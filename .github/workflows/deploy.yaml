@@ -58,7 +58,12 @@ jobs:
         run: |
           git config --global user.email "ci-bot@example.com"
           git config --global user.name "GitHub Actions Bot"
-
+      
+      - name: Update Dockerfile Port for Hagging Face
+        run: |
+          sed -i 's/EXPOSE .*/EXPOSE 7860/' Dockerfile
+          sed -i 's/--port [0-9]*/--port 7860/' Dockerfile
+      
       - name: Push to Hugging Face Space
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
