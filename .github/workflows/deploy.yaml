@@ -64,11 +64,11 @@ jobs:
           sed -i 's/EXPOSE .*/EXPOSE 7860/' Dockerfile
           sed -i 's/--port", "8000"/--port", "7860"/' Dockerfile
 
-      - name: Commit Dockerfile changes
+      - name: Commit Dockerfile changes for HF
         run: |
           git add Dockerfile
-          git commit -m "Update port to 7860 for HF deployment" || echo "No changes to commit"
-      
+          git diff --cached --quiet || git commit -m "${{ github.event.head_commit.message }}"
+
       - name: Push to Hugging Face Space
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
