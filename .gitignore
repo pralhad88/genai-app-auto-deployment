@@ -3,6 +3,7 @@ gcp_key.json
 .env
 venv
 .DS_Store
+**/.DS_Store
 
 # Python
 __pycache__/
