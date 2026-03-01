@@ -62,7 +62,7 @@ jobs:
       - name: Update Dockerfile Port for Hugging Face
         run: |
           sed -i 's/EXPOSE .*/EXPOSE 7860/' Dockerfile
-          sed -i 's/--port [0-9]\+/--port 7860/' Dockerfile
+          sed -i 's/[0-9]\+/7860/' Dockerfile
 
       - name: Commit Dockerfile changes
         run: |
