@@ -59,10 +59,9 @@ jobs:
           git config --global user.email "ci-bot@example.com"
           git config --global user.name "GitHub Actions Bot"
       
-      - name: Update Dockerfile Port for Hagging Face
+      - name: Prepare Dockerfile for HF
         run: |
-          sed -i 's/EXPOSE .*/EXPOSE 7860/' Dockerfile
-          sed -i 's/--port [0-9]*/--port 7860/' Dockerfile
+          cp Dockerfile.hf Dockerfile
       
       - name: Push to Hugging Face Space
         env:
