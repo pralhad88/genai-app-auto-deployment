@@ -18,11 +18,20 @@
 6. GitHub Action IAM role
 `gcloud iam service-accounts create github-actions-robot`
 
-7. 
-`gcloud iam service-accounts list` `github-actions-robot@genai-auto-deploy.iam.gserviceaccount.com`
+7. Create a IAM role and policy for Github Action
+`gcloud iam service-accounts list` 
+MY service account details `github-actions-robot@genai-auto-deploy.iam.gserviceaccount.com`
 
-8. gcloud projects add-iam-policy-binding genai-auto-deploy --member="serviceAccount:github-actions-robot@genai-auto-deploy.iam.gserviceaccount.com" --role="roles/artifactregistry.writer"
+## Attach below IAM policy to the GitHub Action service.
+1. `gcloud projects add-iam-policy-binding genai-auto-deploy --member="serviceAccount:github-actions-robot@genai-auto-deploy.iam.gserviceaccount.com" --role="roles/artifactregistry.writer"`
 
-9. gcloud projects add-iam-policy-binding genai-auto-deploy --member="serviceAccount:github-actions-robot@genai-auto-deploy.iam.gserviceaccount.com" --role="roles/run.admin"
+2. `gcloud projects add-iam-policy-binding genai-auto-deploy --member="serviceAccount:github-actions-robot@genai-auto-deploy.iam.gserviceaccount.com" --role="roles/run.admin"`
 
-10. gcloud projects add-iam-policy-binding genai-auto-deploy \ --member="serviceAccount:github-actions-robot@genai-auto-deploy.iam.gserviceaccount.com" \ --role="roles/iam.serviceAccountUser"
+3. `gcloud projects add-iam-policy-binding genai-auto-deploy --member="serviceAccount:github-actions-robot@genai-auto-deploy.iam.gserviceaccount.com" --role="roles/iam.serviceAccountUser"`
+
+
+8. Create Data warehouse repository
+`gcloud artifacts repositories create genai-repo --repository-format=docker --location=asia-south1 --description="Warehouse for our automated GenAI builds"`
+
+9. Create A gcp Key for GitHub service
+`gcloud iam service-accounts keys create gcp_key.json --iam-account=github-actions-robot@genai-auto-deploy.iam.gserviceaccount.com`
