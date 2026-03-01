@@ -3,3 +3,15 @@ gcp_key.json
 .env
 venv
 .DS_Store
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
